@@ -19,11 +19,11 @@ class RetornoSoap(object):
 
 def analisar_retorno_raw(operacao, raiz, xml, retorno, classe):
     retorno.raise_for_status()
-    match = re.search('<soap:Body>(.*?)</soap:Body>',
+    match = re.search('<S:Body>(.*?)</S:Body>',
                       retorno.text.replace('\n', ''))
     
     if not match:
-        match = re.search("<S:Envelope[^>]*>(.*?)</S:Envelope>",
+        match = re.search("<s:Body xmlns:env='http://www.w3.org/2003/05/soap-envelope'>(.*?)</s:Body>",
                            retorno.text.replace('\n', ''))
         
     if match:
