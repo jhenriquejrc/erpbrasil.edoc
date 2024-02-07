@@ -23,7 +23,7 @@ def analisar_retorno_raw(operacao, raiz, xml, retorno, classe):
                       retorno.text.replace('\n', ''))
     
     if not match:
-        match = re.search("<S:Envelope xmlns:env='http://www.w3.org/2003/05/soap-envelope'>(.*?)</S:Envelope>",
+        match = re.search("<S:Envelope[^>]*>(.*?)</S:Envelope>",
                            retorno.text.replace('\n', ''))
         
     if match:
